@@ -46,13 +46,8 @@ class General(commands.Cog, name="general"):
         """
         Get some useful (or not) information about the bot.
         :param context: The hybrid command context.
-        """
-        embed = discord.Embed(
-            description="Used [Krypton's](https://krypton.ninja) template",
-            color=0x9C84EF,
-        )
-        embed.set_author(name="Bot Information")
-        embed.add_field(name="Owner:", value="Krypton#7331", inline=True)
+        """ 
+        embed.set_author(name="Bot Information") 
         embed.add_field(
             name="Python Version:", value=f"{platform.python_version()}", inline=True
         )
@@ -195,27 +190,27 @@ class General(commands.Cog, name="general"):
         await context.send(embed=embed)
 
     @commands.hybrid_command(
-        name="bitcoin",
-        description="Get the current price of bitcoin.",
+        name="price",
+        description="Get the current price of coins.",
     )
     @checks.not_blacklisted()
-    async def bitcoin(self, context: Context) -> None:
+    async def price(self, context: Context, *, symbol: str) -> None:
         """
-        Get the current price of bitcoin.
+        Get the current price of coin.
         :param context: The hybrid command context.
         """
         # This will prevent your bot from stopping everything when doing a web request - see: https://discordpy.readthedocs.io/en/stable/faq.html#how-do-i-make-a-web-request
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                "https://api.coindesk.com/v1/bpi/currentprice/BTC.json"
-            ) as request:
+                f"https://www.binance.com/api/v3/ticker/price?symbol={symbol}"
+            ) as request: 
                 if request.status == 200:
                     data = await request.json(
-                        content_type="application/javascript"
+                        content_type="application/json"
                     )  # For some reason the returned content is of type JavaScript
                     embed = discord.Embed(
-                        title="Bitcoin price",
-                        description=f"The current price is {data['bpi']['USD']['rate']} :dollar:",
+                        title=f"Price {data['symbol']}",
+                        description=f"The current price is {data['price']} :dollar:",
                         color=0x9C84EF,
                     )
                 else:

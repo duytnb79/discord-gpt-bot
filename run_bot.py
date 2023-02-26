@@ -13,7 +13,6 @@ from discord.ext.commands import Bot, Context
 
 import discord_bot.exceptions as exceptions
 from dotenv import load_dotenv
-
 load_dotenv('.env.local')
 
 config = {
