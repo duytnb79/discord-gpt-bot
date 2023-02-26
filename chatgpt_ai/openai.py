@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import openai
 import os
 
-load_dotenv()
+load_dotenv('.env.local')
 
 openai.api_key = os.getenv('CHATGPT_API_KEY')
 
