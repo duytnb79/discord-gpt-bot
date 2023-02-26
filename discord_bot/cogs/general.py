@@ -47,7 +47,10 @@ class General(commands.Cog, name="general"):
         Get some useful (or not) information about the bot.
         :param context: The hybrid command context.
         """ 
-        embed.set_author(name="Bot Information") 
+        embed = discord.Embed(
+            title="**Bot Information:**", 
+            color=0x9C84EF,
+        ) 
         embed.add_field(
             name="Python Version:", value=f"{platform.python_version()}", inline=True
         )
