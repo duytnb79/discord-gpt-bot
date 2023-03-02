@@ -202,6 +202,7 @@ class General(commands.Cog, name="general"):
         Get the current price of coin.
         :param context: The hybrid command context.
         """
+        await context.defer()
         # This will prevent your bot from stopping everything when doing a web request - see: https://discordpy.readthedocs.io/en/stable/faq.html#how-do-i-make-a-web-request
         async with aiohttp.ClientSession() as session:
             async with session.get(
