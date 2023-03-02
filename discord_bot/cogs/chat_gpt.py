@@ -105,7 +105,7 @@ class ChatGPT(commands.Cog, name="chat_gpt"):
         :param question: The question that should be asked by the user.
         """
         # This will prevent your bot from stopping everything when doing a web request - see: https://discordpy.readthedocs.io/en/stable/faq.html#how-do-i-make-a-web-request
-        
+        await context.defer()
         bot_response = chatgpt_response(prompt=question)
         embed = discord.Embed(
             title="Answer:",

@@ -13,6 +13,7 @@ from discord.ext.commands import Bot, Context
 
 import discord_bot.exceptions as exceptions
 from dotenv import load_dotenv
+
 load_dotenv('.env.local')
 
 config = {
@@ -289,4 +290,9 @@ async def load_cogs() -> None:
 
 asyncio.run(init_db())
 asyncio.run(load_cogs())
+
+# Keep track of the discord bot
+from keep_alive import keep_alive
+keep_alive()
+
 bot.run(config["token"]) 
